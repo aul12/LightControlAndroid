@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
             PendingIntent lightifyAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
                     0, lightifyIntent, 0);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, lightifyCalendar.getTimeInMillis(), lightifyAlarmIntent);
+            alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP, lightifyCalendar.getTimeInMillis(), lightifyAlarmIntent);
 
 
             Intent sunriseIntent= new Intent(getApplicationContext(), SunriseWakeUpReceiver.class);
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
             PendingIntent sunriseAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
                     0, sunriseIntent, 0);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, sunriseCalendar.getTimeInMillis(), sunriseAlarmIntent);
+            alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP, sunriseCalendar.getTimeInMillis(), sunriseAlarmIntent);
         }
 
 
