@@ -17,16 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver android:name="me.aul12.LightControl.SunriseWakeUpReceiver"
             android:permission="">
             <intent-filter>
                 <action android:name="me.aul12.UdpToTcpAdapter.ACTION_SUNRISE_ALARM" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="me.aul12.LightControl.LightifyWakeUpReceiver"
-            android:permission="">
-            <intent-filter>
-                <action android:name="me.aul12.UdpToTcpAdapter.ACTION_LIGHTIFY_ALARM" />
             </intent-filter>
         </receiver>
     </application>

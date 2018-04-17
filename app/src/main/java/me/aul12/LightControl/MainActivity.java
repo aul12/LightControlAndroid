@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             Date alarmDate = new Date(alarmClockInfo.getTriggerTime());
             alarmTimeEdit.setText(alarmDate.toString());
 
-            Intent lightifyIntent = new Intent(getApplicationContext(), LightifyWakeUpReceiver.class);
+            /*Intent lightifyIntent = new Intent(getApplicationContext(), LightifyWakeUpReceiver.class);
             lightifyIntent.setAction(LightifyWakeUpReceiver.ACTION_LIGHTIFY_ALARM);
 
             Bundle lightifyBundle = new Bundle();
@@ -50,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent lightifyAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
                     0, lightifyIntent, 0);
             alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP, lightifyCalendar.getTimeInMillis(), lightifyAlarmIntent);
+                    AlarmManager.RTC_WAKEUP, lightifyCalendar.getTimeInMillis(), lightifyAlarmIntent);*/
 
 
             Intent sunriseIntent= new Intent(getApplicationContext(), SunriseWakeUpReceiver.class);
-            lightifyIntent.setAction(SunriseWakeUpReceiver.ACTION_SUNRISE_ALARM);
+            sunriseIntent.setAction(SunriseWakeUpReceiver.ACTION_SUNRISE_ALARM);
             Bundle sunriseBundle = new Bundle();
             sunriseBundle.putShort("PORT", Config.PORT);
             sunriseBundle.putString("IP", Config.IP);
@@ -237,10 +238,11 @@ public class MainActivity extends AppCompatActivity {
                 new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                new LightifyManager().execute(
-                        new LightifyDetails(Config.LIGHTIFY_USERNAME, Config.LIGHITFY_PASSWORD,
-                                Config.LIGHTIFY_SERIAL_NO,
-                                isChecked, getApplicationContext()));
+                String url =
+                        Config.LIGHTIFY_SERVER_URL+"?deviceId="+Config.DEVICE_ID+"&status="+(isChecked?1:0);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
     }
