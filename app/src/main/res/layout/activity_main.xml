@@ -6,231 +6,12 @@
     android:layout_height="match_parent"
     tools:context="me.aul12.LightControl.MainActivity">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="UP" />
-
-            <Button
-                android:id="@+id/buttonDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DOWN" />
-
-            <Button
-                android:id="@+id/buttonOff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OFF" />
-
-            <Button
-                android:id="@+id/buttonOn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ON" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RED" />
-
-            <Button
-                android:id="@+id/buttonG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GREEN" />
-
-            <Button
-                android:id="@+id/buttonB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BLUE" />
-
-            <Button
-                android:id="@+id/buttonW"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="WHITE" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonR1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red 1" />
-
-            <Button
-                android:id="@+id/buttonG1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Green 1" />
-
-            <Button
-                android:id="@+id/buttonB1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Blue 1" />
-
-            <Button
-                android:id="@+id/buttonW1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Flash" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonR2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="3"
-                android:text="Red 2" />
-
-            <Button
-                android:id="@+id/buttonG2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="3"
-                android:text="Green 2" />
-
-            <Button
-                android:id="@+id/buttonB2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_row="3"
-                android:text="Blue 2" />
-
-            <Button
-                android:id="@+id/buttonW2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="3"
-                android:layout_row="3"
-                android:text="Strobe" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonR4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="5"
-                android:text="Red 4" />
-
-            <Button
-                android:id="@+id/buttonG4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="5"
-                android:text="Green 4" />
-
-            <Button
-                android:id="@+id/buttonB4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_row="5"
-                android:text="Blue 4" />
-
-            <Button
-                android:id="@+id/buttonW4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="3"
-                android:layout_row="5"
-                android:text="Smooth" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/buttonR3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="4"
-                android:text="Red 3" />
-
-            <Button
-                android:id="@+id/buttonG3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="4"
-                android:text="Green 3" />
-
-            <Button
-                android:id="@+id/buttonB3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_row="4"
-                android:text="Blue 3" />
-
-            <Button
-                android:id="@+id/buttonW3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="3"
-                android:layout_row="4"
-                android:text="Fade" />
-        </TableRow>
-
-    </TableLayout>
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -240,8 +21,8 @@
             android:id="@+id/alarmTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:text="None"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/toggleLightify"
@@ -262,32 +43,76 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toggleLightify2"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="0dp"
             android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
             android:text="Fade" />
 
         <Button
-            android:id="@+id/btnQuit"
+            android:id="@+id/buttonOff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/buttonFade"
-            android:layout_alignBottom="@+id/buttonFade"
-            android:layout_toEndOf="@+id/buttonFade"
-            android:text="Quit" />
+            android:text="Off" />
 
-        <ToggleButton
-            android:id="@+id/toggleLightify"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <SeekBar
+            android:id="@+id/seekBarR"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_toEndOf="@+id/btnQuit"
-            android:text="Lightify"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.974"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:max="1023"
+            android:progress="0"
+            android:progressTint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <SeekBar
+            android:id="@+id/seekBarG"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="1023"
+            android:progress="0"
+            android:progressTint="#00FF00" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blue:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <SeekBar
+            android:id="@+id/seekBarB"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="1023"
+            android:progress="0"
+            android:progressTint="#0000FF" />
 
     </LinearLayout>
 

@@ -19,6 +19,7 @@ public class SunriseWakeUpReceiver extends BroadcastReceiver {
         Bundle bundle = intent.getBundleExtra("BUNDLE");
         short port = bundle.getShort("PORT");
         String address = bundle.getString("IP");
-        new CommandSendHandler().execute(new TransportTouple((byte)24, port, address));
+        int []command = {1,0,0,0};
+        new CommandSendHandler().execute(new TransportTouple(command, port, address));
     }
 }

@@ -8,10 +8,11 @@ package me.aul12.LightControl;
 class TransportTouple {
     String address;
     short port;
-    byte command;
-    TransportTouple(byte command, short port, String address) {
+    int[] data;
+
+    TransportTouple(int[] data, short port, String address) {
         this.address = address;
         this.port = port;
-        this.command = command;
+        this.data = data;
     }
 }

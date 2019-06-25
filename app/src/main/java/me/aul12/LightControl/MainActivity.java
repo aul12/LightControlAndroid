@@ -4,13 +4,11 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,8 +16,24 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private void sendCommand(byte command) {
-        new CommandSendHandler().execute(new TransportTouple(command, Config.PORT, Config.IP));
+    private void sendCommand(int command) {
+        int []data = new int[4];
+        data[0] = command;
+        data[1] = 0;
+        data[2] = 0;
+        data[3] = 0;
+
+        new CommandSendHandler().execute(new TransportTouple(data, Config.PORT, Config.IP));
+    }
+
+    private void sendCommand(int[] colors) {
+        int []data = new int[4];
+        data[0] = 0;
+        data[1] = colors[0];
+        data[2] = colors[1];
+        data[3] = colors[2];
+
+        new CommandSendHandler().execute(new TransportTouple(data, Config.PORT, Config.IP));
     }
 
     @Override
@@ -34,24 +48,6 @@ public class MainActivity extends AppCompatActivity {
             TextView alarmTimeEdit = findViewById(R.id.alarmTime);
             Date alarmDate = new Date(alarmClockInfo.getTriggerTime());
             alarmTimeEdit.setText(alarmDate.toString());
-
-            /*Intent lightifyIntent = new Intent(getApplicationContext(), LightifyWakeUpReceiver.class);
-            lightifyIntent.setAction(LightifyWakeUpReceiver.ACTION_LIGHTIFY_ALARM);
-
-            Bundle lightifyBundle = new Bundle();
-            lightifyBundle.putString("USER", Config.LIGHTIFY_USERNAME);
-            lightifyBundle.putString("PASSWORD", Config.LIGHITFY_PASSWORD);
-            lightifyBundle.putString("SERIAL_NO", Config.LIGHTIFY_SERIAL_NO);
-            lightifyIntent.putExtra("BUNDLE", lightifyBundle);
-
-            Calendar lightifyCalendar = Calendar.getInstance();
-            lightifyCalendar.setTimeInMillis(alarmClockInfo.getTriggerTime());
-            lightifyCalendar.add(Calendar.MINUTE, -5);
-
-            PendingIntent lightifyAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                    0, lightifyIntent, 0);
-            alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP, lightifyCalendar.getTimeInMillis(), lightifyAlarmIntent);*/
 
 
             Intent sunriseIntent= new Intent(getApplicationContext(), SunriseWakeUpReceiver.class);
@@ -71,178 +67,72 @@ public class MainActivity extends AppCompatActivity {
                     AlarmManager.RTC_WAKEUP, sunriseCalendar.getTimeInMillis(), sunriseAlarmIntent);
         }
 
+        final SeekBar seekBarR = findViewById(R.id.seekBarR);
+        final SeekBar seekBarG = findViewById(R.id.seekBarG);
+        final SeekBar seekBarB = findViewById(R.id.seekBarB);
 
-        findViewById(R.id.buttonUp).setOnClickListener(new View.OnClickListener() {
+        seekBarR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                sendCommand((byte)0);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int[] colors = {seekBarR.getProgress(), seekBarG.getProgress(), seekBarB.getProgress()};
+                sendCommand(colors);
             }
         });
-        findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
+
+        seekBarG.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                sendCommand((byte)1);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int[] colors = {seekBarR.getProgress(), seekBarG.getProgress(), seekBarB.getProgress()};
+                sendCommand(colors);
             }
         });
-        findViewById(R.id.buttonOff).setOnClickListener(new View.OnClickListener() {
+
+        seekBarB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                sendCommand((byte)2);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int []colors = {seekBarR.getProgress(), seekBarG.getProgress(), seekBarB.getProgress()};
+                sendCommand(colors);
             }
-        });
-        findViewById(R.id.buttonOn).setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                sendCommand((byte)3);
-            }
-        });
-        findViewById(R.id.buttonR).setOnClickListener(new View.OnClickListener() {
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
             @Override
-            public void onClick(View v) {
-                sendCommand((byte)4);
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
-        findViewById(R.id.buttonR1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)8);
-            }
-        });
-        findViewById(R.id.buttonR2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)12);
-            }
-        });
-        findViewById(R.id.buttonR3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)16);
-            }
-        });
-        findViewById(R.id.buttonR4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)20);
-            }
-        });
-        findViewById(R.id.buttonG).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)5);
-            }
-        });
-        findViewById(R.id.buttonG1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)9);
-            }
-        });
-        findViewById(R.id.buttonG2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)13);
-            }
-        });
-        findViewById(R.id.buttonG3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)17);
-            }
-        });
-        findViewById(R.id.buttonG4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)21);
-            }
-        });
-        findViewById(R.id.buttonB).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)6);
-            }
-        });
-        findViewById(R.id.buttonB1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)10);
-            }
-        });
-        findViewById(R.id.buttonB2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)14);
-            }
-        });
-        findViewById(R.id.buttonB3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)18);
-            }
-        });
-        findViewById(R.id.buttonB4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)22);
-            }
-        });
-        findViewById(R.id.buttonW).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)7);
-            }
-        });
-        findViewById(R.id.buttonW1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)11);
-            }
-        });
-        findViewById(R.id.buttonW2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)15);
-            }
-        });
-        findViewById(R.id.buttonW3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)19);
-            }
-        });
-        findViewById(R.id.buttonW4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCommand((byte)23);
-            }
-        });
+
         findViewById(R.id.buttonWakeUp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendCommand((byte)24);
+                sendCommand(1);
             }
         });
         findViewById(R.id.buttonFade).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendCommand((byte)25);
+                sendCommand(2);
             }
         });
-        findViewById(R.id.btnQuit).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonOff).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendCommand((byte)255);
-            }
-        });
-        ((ToggleButton)findViewById(R.id.toggleLightify)).setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String url =
-                        Config.LIGHTIFY_SERVER_URL+"?deviceId="+Config.DEVICE_ID+"&status="+(isChecked?1:0);
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+                int []colors = {0,0,0};
+                sendCommand(colors);
+                seekBarR.setProgress(0);
+                seekBarG.setProgress(0);
+                seekBarB.setProgress(0);
             }
         });
     }
